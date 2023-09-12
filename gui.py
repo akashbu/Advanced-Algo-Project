@@ -3,6 +3,11 @@ from tkinter import ttk
 import random
 import time
 import sys
+import customtkinter
+from PIL import Image, ImageTk
+
+customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
+customtkinter.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
 
 # Sorting algorithms
 def bubble_sort(arr):
@@ -103,6 +108,14 @@ def analyze_algorithms():
 # Create the main window
 root = tk.Tk()
 root.title("Algorithm Efficiency Analyzer Tool")
+
+# header image for the main app  
+header_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+header_frame.pack(padx=20, pady=20)
+
+header_image = ImageTk.PhotoImage(Image.open("img/header_image.jpg").resize((700,70)))
+header_button = customtkinter.CTkButton(header_frame, image=header_image, fg_color='transparent',text="")
+header_button.grid(row=0)
 
 # Create and configure the input frame
 input_frame = ttk.Frame(root)

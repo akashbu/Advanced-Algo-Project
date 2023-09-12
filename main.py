@@ -5,6 +5,11 @@ import time
 from input_handling import validate_input, generate_random_array
 from sorting_algorithms import bubble_sort, insertion_sort, merge_sort, quick_sort
 from plotting import plot_comparison
+import customtkinter
+from PIL import Image, ImageTk
+
+customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
+customtkinter.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
 
 # Define global variables for user input and sorting results
 user_input = ""
@@ -72,15 +77,23 @@ def run_algorithms():
     plot_comparison(selected_algorithms, execution_times)
 
 # Create the main window
-root = tk.Tk()
+root = customtkinter.CTk()
 root.title("Sorting Algorithm Efficiency Analyzer")
 
+# header image for the main app  
+header_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+header_frame.pack(padx=20, pady=20)
+
+header_image = ImageTk.PhotoImage(Image.open("img/header_image.jpg").resize((700,70)))
+header_button = customtkinter.CTkButton(header_frame, image=header_image, fg_color='transparent',text="")
+header_button.grid(row=0)
+
 # Create and configure the input frame
-input_frame = ttk.Frame(root)
+input_frame = customtkinter.CTkFrame(root, corner_radius= 30)
 input_frame.pack(padx=20, pady=20)
 
 # Create and configure the data type dropdown
-data_type_label = ttk.Label(input_frame, text="Select Data Type:")
+data_type_label = customtkinter.CTkLabel(input_frame, text="Select Data Type:", corner_radius=10)
 data_type_label.grid(row=0, column=0, sticky=tk.W)
 
 data_type_var = tk.StringVar(value="number")
@@ -88,41 +101,41 @@ data_type_dropdown = ttk.Combobox(input_frame, textvariable=data_type_var, value
 data_type_dropdown.grid(row=0, column=1, padx=10)
 
 # Create and configure the input field
-input_label = ttk.Label(input_frame, text="Enter comma-separated input:")
+input_label = customtkinter.CTkLabel(input_frame, text="Enter comma-separated input:",corner_radius=20)
 input_label.grid(row=1, column=0, sticky=tk.W)
 
 input_field = ttk.Entry(input_frame, width=40)
 input_field.grid(row=1, column=1)
 
-validate_button = ttk.Button(input_frame, text="Validate Input", command=handle_user_input)
+validate_button = customtkinter.CTkButton(input_frame, text="Validate Input", command=handle_user_input)
 validate_button.grid(row=1, column=2, padx=10)
 
-error_label = ttk.Label(input_frame, text="", foreground="red")
+error_label = customtkinter.CTkLabel(input_frame, text="", fg_color="red", corner_radius=20)
 error_label.grid(row=2, columnspan=3)
 
 # Create and configure the array size field
-array_size_label = ttk.Label(input_frame, text="Enter array size:")
+array_size_label = customtkinter.CTkLabel(input_frame, text="Enter array size:",corner_radius=20)
 array_size_label.grid(row=3, column=0, sticky=tk.W)
 
 array_size_entry = ttk.Entry(input_frame, width=10)
 array_size_entry.grid(row=3, column=1)
 
-generate_button = ttk.Button(input_frame, text="Generate Array", command=generate_array)
-generate_button.grid(row=3, column=2, padx=10)
+generate_button = customtkinter.CTkButton(input_frame, text="Generate Array", command=generate_array, hover_color='light blue')
+generate_button.grid(row=1, column=2)
 
 # Create a label to display the selected data
-selected_data_label = ttk.Label(root, text="")
+selected_data_label = customtkinter.CTkLabel(root, text="",corner_radius=20)
 selected_data_label.pack(padx=20, pady=10)
 
 # Create a label to display the generated array
-generated_array_label = ttk.Label(root, text="Generated Array:")
+generated_array_label = customtkinter.CTkLabel(root, text="Generated Array:",corner_radius=20)
 generated_array_label.pack(pady=10)
 
 generated_array_text = tk.Text(root, height=5, width=50)
 generated_array_text.pack(pady=10)
 
 # Create and configure the sorting algorithm checkboxes
-algorithm_frame = ttk.Frame(root)
+algorithm_frame = customtkinter.CTkFrame(root, fg_color='transparent')
 algorithm_frame.pack(padx=20, pady=10)
 
 algorithm_labels = [
@@ -156,8 +169,15 @@ select_all_checkbox.configure(command=toggle_all_checkboxes)
 select_all_checkbox.grid(row=len(algorithm_labels), column=0, sticky=tk.W)
 
 # Create and configure the run button
-run_button = ttk.Button(root, text="Run Algorithms & Plot Comparison", command=run_algorithms)
+run_button = customtkinter.CTkButton(root, text="Run Algorithms & Plot Comparison", command=run_algorithms)
 run_button.pack(pady=10)
+
+# Create and configure the output frame
+output_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+output_frame.pack(padx=20, pady=20)
+output_image = ImageTk.PhotoImage(Image.open("img/output.jpg").resize((700,70)))
+output_button = customtkinter.CTkButton(output_frame, image=output_image, fg_color='transparent',text=" TODO : Make matplotlib save the output and use it image here")
+output_button.grid(row=0)
 
 # Start the Tkinter main loop
 root.mainloop()
