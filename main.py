@@ -99,6 +99,14 @@ header_image = ImageTk.PhotoImage(Image.open("img/header_image.jpg").resize((700
 header_button = customtkinter.CTkButton(header_frame, image=header_image, fg_color='transparent',text="")
 header_button.grid(row=0)
 
+# create a left frame for input data  
+left_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+left_frame.pack(padx=10, pady=20 )
+
+# create a right frame for input data  
+right_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+right_frame.pack(padx=10, pady=20 )
+
 # Create and configure the input frame
 input_frame = customtkinter.CTkFrame(root, corner_radius= 30)
 input_frame.pack(padx=20, pady=20)
@@ -184,7 +192,7 @@ run_button = customtkinter.CTkButton(root, text="Run Algorithms & Plot Compariso
 run_button.pack(pady=10)
 
 # Create and configure the output frame
-output_frame = customtkinter.CTkFrame(root, corner_radius= 30)
+output_frame = customtkinter.CTkScrollableFrame(root, corner_radius= 30)
 output_frame.pack(padx=20, pady=20)
 output_image = ImageTk.PhotoImage(Image.open("img/output.jpg").resize((700,70)))
 output_button = customtkinter.CTkButton(output_frame, image=output_image, fg_color='transparent',text="")
