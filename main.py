@@ -57,7 +57,7 @@ def run_algorithms():
     
     for algo in selected_algorithms:
         arr_copy = generate_random_array(array_size)  # Generate a random array for each algorithm
-        
+        #TODO
         start_time = time.time()
         if algo == "Bubble Sort":
             bubble_sort(arr_copy)
