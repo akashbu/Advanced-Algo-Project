@@ -81,8 +81,9 @@ def run_algorithms():
     plt.xlabel('Algorithms')
     plt.ylabel('Execution time')
     plt.savefig('bubble_sort_output.png')
-    output_image = ImageTk.PhotoImage(Image.open("bubble_sort_output.png").resize((70,70)))
-    output_button.configure(image =output_image)
+    plt.show()
+    #output_image = ImageTk.PhotoImage(Image.open("bubble_sort_output.png").resize((700,700)))
+    #output_button.configure(image =output_image)
     #update the output frame in the main app 
 
 
@@ -131,7 +132,7 @@ array_size_entry = ttk.Entry(input_frame, width=10)
 array_size_entry.grid(row=3, column=1)
 
 generate_button = customtkinter.CTkButton(input_frame, text="Generate Array", command=generate_array, hover_color='light blue')
-generate_button.grid(row=1, column=2)
+generate_button.grid(row=3, column=2)
 
 # Create a label to display the selected data
 selected_data_label = customtkinter.CTkLabel(root, text="",corner_radius=20)
