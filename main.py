@@ -7,6 +7,8 @@ from sorting_algorithms import bubble_sort, insertion_sort, merge_sort, quick_so
 from plotting import plot_comparison
 import customtkinter
 from PIL import Image, ImageTk
+import matplotlib.pyplot as plt
+
 
 customtkinter.set_appearance_mode("dark")  # Modes: system (default), light, dark
 customtkinter.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
@@ -74,7 +76,15 @@ def run_algorithms():
         execution_times.append(execution_time)
 
     # Plot the comparison graph
-    plot_comparison(selected_algorithms, execution_times)
+    #plot_comparison(selected_algorithms, execution_times)
+    plt.plot(selected_algorithms, execution_times)
+    plt.xlabel('Algorithms')
+    plt.ylabel('Execution time')
+    plt.savefig('bubble_sort_output.png')
+    output_image = ImageTk.PhotoImage(Image.open("bubble_sort_output.png").resize((70,70)))
+    output_button.configure(image =output_image)
+    #update the output frame in the main app 
+
 
 # Create the main window
 root = customtkinter.CTk()
@@ -176,7 +186,7 @@ run_button.pack(pady=10)
 output_frame = customtkinter.CTkFrame(root, corner_radius= 30)
 output_frame.pack(padx=20, pady=20)
 output_image = ImageTk.PhotoImage(Image.open("img/output.jpg").resize((700,70)))
-output_button = customtkinter.CTkButton(output_frame, image=output_image, fg_color='transparent',text=" TODO : Make matplotlib save the output and use it image here")
+output_button = customtkinter.CTkButton(output_frame, image=output_image, fg_color='transparent',text="")
 output_button.grid(row=0)
 
 # Start the Tkinter main loop
